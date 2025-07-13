@@ -114,19 +114,5 @@ def main():
             time.sleep(interval)
     log(f"Sync is completed.", path_log)
 
-
-# Required function for validation: calculates hash of first encountered file in source folder
-# def hash_first_file_in_source(source_folder_path):
-#     for dirpath, _, filenames in os.walk(source_folder_path):
-#         for filename in filenames:
-#             first_file = os.path.join(dirpath, filename)
-#             return calculate_md5(first_file)
-#     return None
-
-
 if __name__ == "__main__":
     main()
-
-
-    # python3 -u "/Users/valeriohome/www/folder_sync/sync_folder.py" ./source ./replica 2 2 ./log.txt
-    # python3 -u "/Users/valeriohome/www/folder_sync/sync_folder.py" ./source ./replica 2 2 ./logs/
