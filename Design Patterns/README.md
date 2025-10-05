@@ -5,11 +5,13 @@ Practice of common software design patterns.
 
 ## Creational Patterns
 
-- [ ] Factory Method
-- [ ] Abstract Factory
-- [x] Builder
-- [ ] Prototype
-- [ ] Singleton
+ Status | Pattern            | Description           |
+|-----|:-------------------|:----------------------|
+| [ ] | Factory Method     | -                     |
+| [ ] | Abstract Factory   | -                     |
+| [x] | [Builder](Builder) | Orders for e-commerce |
+| []  | Prototype          | -                     |
+| []  | Singleton          | -                     |
 
 ## Structural Patterns
 
