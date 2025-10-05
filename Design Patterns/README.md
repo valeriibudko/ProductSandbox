@@ -9,9 +9,9 @@ Practice of common software design patterns.
 |--------|:------------------------------|:----------------------|
 | -      | Factory Method                | -                     |
 | -      | Abstract Factory              | -                     |
-| [x]    | [Builder](Creational/Builder) | Orders for e-commerce |
-| [ x ]  | Prototype                     | -                     |
-| []     | Singleton                     | -                     |
+| Done   | [Builder](Creational/Builder) | Orders for e-commerce |
+| -      | Prototype                     | -                     |
+| -      | Singleton                     | -                     |
 
 ## Structural Patterns
 
