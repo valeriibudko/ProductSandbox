@@ -1,3 +1,10 @@
-## Description
+### Description
 
-Order for e-commerce
+Implementation **builder** for order e-commerce
+
+### Run build
+
+```
+composer install
+php bin/demo.php
+```
