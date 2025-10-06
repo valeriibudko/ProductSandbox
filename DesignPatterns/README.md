@@ -15,4 +15,28 @@ Practice of common software design patterns.
 
 ## Structural Patterns
 
+ Status     | Pattern                  | Description           |
+|------------|:-------------------------|:----------------------|
+| -          | Adapter                  | -                     |
+| -          | Bridge                   | -                     |
+| -          | Composite                | -                     |
+| -          | Decorator                | -                     |
+| -          | Facade                   | -                     |
+| -          | Flyweight                | -                     |
+| -          | Proxy                    | -                     |
+
+
 ## Behavioral Patterns
+
+ Status     | Pattern                                 | Description           |
+|------------|:----------------------------------------|:----------------------|
+| -          | Chain of Responsibility                 | -                     |
+| -          | Command                                 | -                     |
+| -          | Iterator                                | -                     |
+| -          | Mediator                                | -                     |
+| -          | Memento                                 | -                     |
+| -          | Observer                                | -                     |
+| -          | State                                   | -                     |
+| -          | Strategy                                | -                     |
+| -          | Template Method                         | -                     |
+| -          | Visitor                                | -                     |
