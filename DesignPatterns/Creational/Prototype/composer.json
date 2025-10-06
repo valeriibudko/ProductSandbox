@@ -1,5 +1,5 @@
 {
-  "name": "acme/invoice-prototype-demo",
+  "name": "vbudko/invoice-prototype-demo",
   "require": {
     "php": "^8.2",
     "symfony/validator": "^7.3",
@@ -10,5 +10,11 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^10.5"
-  }
+  },
+  "authors": [
+    {
+      "name": "Valerii",
+      "email": "valerii.web.dev@gmail.com"
+    }
+    ]
 }

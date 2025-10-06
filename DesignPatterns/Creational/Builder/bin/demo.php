@@ -24,8 +24,7 @@ $payload = [
         'country' => 'DE', 'city' => 'Berlin', 'line1' => 'Brunnenstrae 87', 'postal' => '13355'
     ],
     'shipping_cost' => 500, // 5.00 EUR
-//    'coupon' => 'WELCOME10',
-    'coupon' => '10',
+//    'coupon' => 'WELCOME10', //TODO Make service CouponNames
     'meta' => ['source' => 'landing-hero'],
 ];
 
