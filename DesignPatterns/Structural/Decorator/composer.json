@@ -3,7 +3,8 @@
   "require": {
     "php": "^8.2",
     "psr/log": "^3.0",
-    "aws/aws-sdk-php": "^3.356"
+    "aws/aws-sdk-php": "^3.356",
+    "ramsey/uuid": "^4.9"
   },
   "autoload": {
     "psr-4": { "App\\": "src/" }
