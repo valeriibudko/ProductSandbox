@@ -15,15 +15,15 @@ Practice of common software design patterns.
 
 ## Structural Patterns
 
- Status     | Pattern                  | Description           |
-|------------|:-------------------------|:----------------------|
-| -          | Adapter                  | -                     |
-| -          | Bridge                   | -                     |
-| -          | Composite                | -                     |
-| -          | Decorator                | -                     |
-| -          | Facade                   | -                     |
-| -          | Flyweight                | -                     |
-| -          | Proxy                    | -                     |
+ Status     | Pattern                            | Description           |
+|------------|:-----------------------------------|:----------------------|
+| -          | Adapter                            | -                     |
+| -          | Bridge                             | -                     |
+| -          | Composite                          | -                     |
+| In process | [Decorator](Structural/Decorator)  | -                     |
+| -          | Facade                             | -                     |
+| -          | Flyweight                          | -                     |
+| -          | Proxy                              | -                     |
 
 
 ## Behavioral Patterns
