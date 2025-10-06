@@ -36,6 +36,12 @@ final class Money
         return new self($this->amount + $other->amount, $this->currency);
     }
 
+    public function subtract(self $other): self
+    {
+        $this->assertSameCurrency($other);
+        return new self($this->amount - $other->amount, $this->currency);
+    }
+
     public function multiply(float $factor): self
     {
         return new self((int) round($this->amount * $factor), $this->currency);

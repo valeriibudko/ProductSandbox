@@ -13,6 +13,9 @@ use App\Domain\Order\Value\Address;
 
 final class OrderBuilder implements OrderBuilderInterface
 {
+    private array $couponDiscountList = [
+        'WELCOME10' => 0.10
+    ];
     private ?string $id = null;
     private ?string $email = null;
     private ?string $currency = null;
@@ -23,6 +26,7 @@ final class OrderBuilder implements OrderBuilderInterface
     private ?Address $billing = null;
     private ?Money $shippingCost = null;
     private ?string $coupon = null;
+    private ?float $couponDiscount = null;
     private array $meta = [];
 
     public function start(string $orderId, string $customerEmail, string $currency): self
@@ -60,6 +64,9 @@ final class OrderBuilder implements OrderBuilderInterface
     public function withCoupon(?string $code): self
     {
         $this->coupon = $code ? strtoupper(trim($code)) : null;
+        if($this->coupon) {
+            $this->couponDiscount = $this->couponDiscountList[$this->coupon];
+            }
         return $this;
     }
 
@@ -95,27 +102,20 @@ final class OrderBuilder implements OrderBuilderInterface
             $errors[] = 'Shipping cost currency mismatch';
         }
 
-        // TODO Conditional business logic for discounts
-        $discount = Money::of(0, $currency);
-        if ($this->coupon) {
-            // TODO 10% sale for SUM(items), but not more than 50 item
-            $discount = $itemsTotal->multiply(0.10);
-            $max = Money::of(5000, $currency); // 50.00
-            if ($discount->amount > $max->amount) {
-                $discount = $max;
-            }
+        $taxBase = $itemsTotal->add($shipping);
+        if ($this->couponDiscount) {
+            $discount = $itemsTotal->multiply($this->couponDiscount);
+            $taxBase = $taxBase->subtract(Money::of($discount->amount, $currency));
         }
 
-        // TODO Make service.
         // Tax 23% from (itemsTotal - discount + shipping)
-        $taxBase = $itemsTotal->add($shipping)->add(Money::of(-$discount->amount, $currency));
         $tax = $taxBase->multiply(0.23);
 
         // Summary
         $grand = $itemsTotal
             ->add($shipping)
             ->add($tax)
-            ->add(Money::of(-$discount->amount, $currency));
+            ->subtract(Money::of($discount->amount, $currency));
 
         if ($grand->amount < 0) {
             $errors[] = 'Grand total is negative, check discounts';
