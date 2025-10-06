@@ -17,6 +17,7 @@ $registry = new InvoicePrototypeRegistry();
 $addressSeller = new Address(
         company: 'ACME LTD',
         line1: 'Main St 1',
+        line2: null,
         city: 'Lisbon',
         country: 'PT',
         postal:'1000-001');
