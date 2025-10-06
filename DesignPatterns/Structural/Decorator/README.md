@@ -6,6 +6,7 @@ retries and audit logging layered around an S3 storage service.
 ### Run build
 
 ```
+cp env.ini.dist env.ini
 composer install
 php bin/demo.php
 ```
