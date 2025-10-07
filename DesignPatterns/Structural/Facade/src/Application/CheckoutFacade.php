@@ -29,26 +29,26 @@ final class CheckoutFacade
         $this->logger->info('Checkout started', ['orderId' => $order->id, 'total' => $order->total()->amountMinor]);
 
         try {
-            // 1) Антифрод
+            // Antifraud
             $this->fraud->check($order);
             $this->logger->info('Fraud check passed', ['orderId' => $order->id]);
 
-            // 2) Резерв на складе
+            // Reserve in warehouse
             $reservation = $this->inventory->reserve($order);
             $this->logger->info('Inventory reserved', $reservation + ['orderId' => $order->id]);
 
-            // 3) Списание платежа
+            // Payment write-off
             $payment = $this->payments->charge($order->customer->id, $order->total());
             if (!$payment['captured']) {
                 throw new CheckoutErrorDTO('Payment not captured.');
             }
             $this->logger->info('Payment captured', $payment + ['orderId' => $order->id]);
 
-            // 4) Инвойс
+            // Invoice
             $invoice = $this->invoices->issueInvoice($order, $payment['paymentId']);
             $this->logger->info('Invoice issued', $invoice + ['orderId' => $order->id]);
 
-            // 5) Доставка
+            // Delivery
             $shipment = $this->shipping->createShipment($order);
             $this->logger->info('Shipment created', $shipment + ['orderId' => $order->id]);
 
@@ -66,7 +66,7 @@ final class CheckoutFacade
                 'orderId' => $order->id,
                 'error' => $e->getMessage()
             ]);
-            // Здесь уместно сделать компенсации/сагу: отменить резерв, возврат платежа и т.д.
+            // TODO Compensations: cancel the reservation, refund the payment, etc.
             throw new CheckoutErrorDTO($e->getMessage(), previous: $e);
         }
     }
