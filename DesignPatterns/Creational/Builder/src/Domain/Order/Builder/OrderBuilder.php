@@ -6,6 +6,8 @@ namespace App\Domain\Order\Builder;
 
 use App\Domain\Common\Money;
 use App\Domain\Common\ValidationException;
+use App\Domain\Enum\Coupon;
+use App\Domain\Enum\Currency;
 use App\Domain\Order\Order;
 use App\Domain\Order\OrderItem;
 use App\Domain\Order\OrderSnapshot;
@@ -13,9 +15,6 @@ use App\Domain\Order\Value\Address;
 
 final class OrderBuilder implements OrderBuilderInterface
 {
-    private array $couponDiscountList = [
-        'WELCOME10' => 0.10
-    ];
     private ?string $id = null;
     private ?string $email = null;
     private ?string $currency = null;
@@ -63,9 +62,9 @@ final class OrderBuilder implements OrderBuilderInterface
 
     public function withCoupon(?string $code): self
     {
-        $this->coupon = $code ? strtoupper(trim($code)) : null;
+        $this->coupon = $code;
         if($this->coupon) {
-            $this->couponDiscount = $this->couponDiscountList[$this->coupon];
+            $this->couponDiscount = Coupon::fromString($this->coupon)->getDiscount();
             }
         return $this;
     }
@@ -88,7 +87,7 @@ final class OrderBuilder implements OrderBuilderInterface
         if ($this->items === []) $errors[] = 'At least one item required';
 
         // Cash settlements, single currency
-        $currency = $this->currency ?? Money::CURRENCY_EUR;
+        $currency = $this->currency ?? Currency::EUR->value;
         $itemsTotal = Money::of(0, $currency);
         foreach ($this->items as $i) {
             if ($i->price->currency !== $currency) {
