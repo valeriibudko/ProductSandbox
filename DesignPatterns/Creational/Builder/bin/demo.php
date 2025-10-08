@@ -28,9 +28,9 @@ $payload = [
     'meta' => ['source' => 'landing-hero'],
 ];
 
-$dto = OrderCreateDTO::fromArray($payload);
+$orderCreateDTO = OrderCreateDTO::fromArray($payload);
 
 $director = new OrderDirector(new OrderBuilder());
-$order = $director->fromPayload($dto);
+$order = $director->fromPayload($orderCreateDTO);
 
 echo json_encode($order, JSON_PRETTY_PRINT) . PHP_EOL;

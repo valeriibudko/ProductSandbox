@@ -6,9 +6,6 @@ namespace App\Domain\Common;
 
 final class Money
 {
-    public CONST CURRENCY_USD = 'USD';
-    public CONST CURRENCY_EUR = 'EUR';
-
     public readonly string $currency;
     public readonly int $amount; // minor units (cents)
 
@@ -17,6 +14,7 @@ final class Money
         if ($amount < 0) {
             throw ValidationException::withMessages(['Money amount must be >= 0 Input is: '. $amount]);
         }
+        // TODO Make validation with Domain/Enum/Currency
         if (!preg_match('/^[A-Z]{3}$/', $currency)) {
             throw ValidationException::withMessages(['Currency must be ISO 4217 (e.g., USD, EUR)']);
         }
