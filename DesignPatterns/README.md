@@ -33,10 +33,10 @@ Practice of common software design patterns.
 | -          | Chain of Responsibility                 | -                     |
 | -          | Command                                 | -                     |
 | -          | Iterator                                | -                     |
-| -          | Mediator                                | -                     |
+| In process | [Mediator](Behavioral/Mediator)         | -                     |
 | -          | Memento                                 | -                     |
 | -          | Observer                                | -                     |
 | -          | State                                   | -                     |
 | -          | Strategy                                | -                     |
 | -          | Template Method                         | -                     |
-| -          | Visitor                                | -                     |
+| -          | Visitor                                 | -                     |
