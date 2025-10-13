@@ -2,8 +2,6 @@
 
 Implementation **Factory Method** for sending notifications via different channels: Email or SMS.
 
-
-
 ### Deploy
 
 ```
@@ -24,5 +22,5 @@ php bin/demo.php sms 351912300111 SubjectTest BodyText
 ### Autotest
 
 ```
-vendor/bin/phpunit tests
+composer test
 ```

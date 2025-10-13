@@ -2,7 +2,7 @@
   "name": "vbudko/order-builder-demo",
   "description": "Production-ready example of the Builder design pattern in PHP with tests.",
   "type": "library",
-  "license": "proprietary",
+  "license": "MIT",
   "require": {
     "php": "^8.2",
     "symfony/validator": "^7.3",
