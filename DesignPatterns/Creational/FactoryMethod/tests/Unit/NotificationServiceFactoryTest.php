@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Tests\Unit;
+namespace Tests\Unit;
 
-use App\Application\Factory\NotificationServiceFactory;
 use App\Application\Enum\Channel;
+use App\Application\Factory\NotificationServiceFactory;
 use App\Notification\Service\EmailNotificationService;
+use App\Notification\Service\NotificationService;
 use App\Notification\Service\SmsNotificationService;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use App\Notification\Service\NotificationService;
 
 final class NotificationServiceFactoryTest extends TestCase
 {

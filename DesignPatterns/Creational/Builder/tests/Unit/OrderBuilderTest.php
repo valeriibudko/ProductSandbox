@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit;
+namespace Tests\Unit;
 
 use App\Application\DTO\OrderCreateDTO;
 use App\Application\Factory\OrderDirector;
 use App\Domain\Order\Builder\OrderBuilder;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
 final class OrderBuilderTest extends TestCase
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit;
+namespace Tests\Unit;
 
 use App\Application\CheckoutFacade;
 use App\Application\DTO\CheckoutErrorDTO;
 use App\Domain\{Address, Customer, Money, Order, OrderItem};
+use App\Infrastructure\FraudChecker\{FraudCheckerInterface};
 use App\Infrastructure\Inventory\InventoryServiceInterface;
 use App\Infrastructure\Invoice\InvoiceServiceInterface;
-use App\Infrastructure\FraudChecker\{FraudCheckerInterface};
 use App\Infrastructure\PaymentGateway\PaymentGatewayInterface;
 use App\Infrastructure\Shipping\ShippingServiceInterface;
 use App\Infrastructure\StdoutLogger\StdoutLoggerInterface;

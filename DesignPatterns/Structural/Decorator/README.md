@@ -3,16 +3,18 @@
 Implementation **Decorator** for secure document storage with virus scanning, 
 retries and audit logging layered around an S3 storage service.
 
-### Run build
-
+### Deploy
 ```
 cp env.ini.dist env.ini
 composer install
+```
+
+### Run build
+```
 php bin/demo.php
 ```
 
 ### Autotest
-
 ```
-vendor/phpunit/phpunit/phpunit src/Tests/Unit/
+vendor/bin/phpunit tests
 ```

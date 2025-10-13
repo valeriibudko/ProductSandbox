@@ -3,15 +3,17 @@
 Implementation **Facade**. The single CheckoutFacade point hides the payment gateway, 
 warehouse reservation, delivery, invoicing, anti-fraud, and logging.
 
-### Run build
-
+### Deploy
 ```
 composer install
+```
+
+### Run build
+```
 php bin/demo.php
 ```
 
 ### Autotest
-
 ```
-vendor/bin/phpunit src/Tests/Unit/CheckoutFacadeTest.php
+vendor/bin/phpunit tests
 ```

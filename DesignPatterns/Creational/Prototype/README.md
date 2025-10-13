@@ -2,15 +2,17 @@
 
 Implementation **Prototype** for generating invoice
 
-### Run build
-
+### Deploy
 ```
 composer install
+```
+
+### Run build
+```
 php bin/demo.php
 ```
 
 ### Autotest
-
 ```
-vendor/phpunit/phpunit/phpunit src/Tests/Unit/InvoiceTest.php
+vendor/bin/phpunit tests
 ```

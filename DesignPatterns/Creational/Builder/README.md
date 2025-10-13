@@ -2,15 +2,17 @@
 
 Implementation **builder** for order e-commerce
 
-### Run build
-
+### Deploy
 ```
 composer install
+```
+
+### Run build
+```
 php bin/demo.php
 ```
 
 ### Autotest
-
 ```
-vendor/bin/phpunit src/Tests
+vendor/bin/phpunit tests
 ```
