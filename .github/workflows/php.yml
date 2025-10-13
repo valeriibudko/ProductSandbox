@@ -25,6 +25,10 @@ jobs:
       working-directory: DesignPatterns/Creational/Builder
       run: composer validate --strict
 
+    - name: Validate composer.json and composer.lock. Case 3
+      working-directory: DesignPatterns/Creational/FactoryMethod
+      run: composer validate --strict
+
     - name: Cache Composer packages. Case 1
       id: composer-cache-1
       uses: actions/cache@v3
@@ -43,6 +47,15 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
+    - name: Cache Composer packages. Case 3
+      id: composer-cache-2
+      uses: actions/cache@v3
+      with:
+        path: DesignPatterns/Creational/FactoryMethod/vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('DesignPatterns/Creational/FactoryMethod/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
     - name: Install dependencies. Case 1
       working-directory: DesignPatterns/Structural/Facade
       run: composer install --prefer-dist --no-progress
@@ -51,10 +64,18 @@ jobs:
       working-directory: DesignPatterns/Creational/Builder
       run: composer install --prefer-dist --no-progress
 
+    - name: Install dependencies. Case 3
+      working-directory: DesignPatterns/Creational/FactoryMethod
+      run: composer install --prefer-dist --no-progress
+
     - name: Run test suite. Case 1
       working-directory: DesignPatterns/Structural/Facade
       run:  composer run-script test
 
     - name: Run test suite. Case 2
       working-directory: DesignPatterns/Creational/Builder
+      run:  composer run-script test
+
+    - name: Run test suite. Case 3
+      working-directory: DesignPatterns/Creational/FactoryMethod
       run:  composer run-script test
