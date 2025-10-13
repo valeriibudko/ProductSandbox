@@ -1,0 +1,4 @@
+/vendor
+/var/versions/*
+!/var/versions/.gitkeep
+phpunit.xml
