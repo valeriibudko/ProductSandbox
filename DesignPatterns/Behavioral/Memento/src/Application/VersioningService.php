@@ -1,0 +1,44 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Application;
+
+use App\Domain\Document;
+
+final class VersioningService
+{
+    public function __construct(
+        private readonly VersionStore $store
+    ) {}
+
+    /**
+     * Need calle on every user change
+     */
+    public function checkpoint(Document $doc, string $reason = 'edit'): void
+    {
+        $this->store->push($doc->createSnapshot($reason));
+        // Any new action "breaks" the redo branch
+        $this->store->clearRedo();
+    }
+
+    public function undo(Document $doc): bool
+    {
+        $snap = $this->store->undo();
+        if (!$snap) return false;
+        $doc->restore($snap);
+        return true;
+    }
+
+    public function redo(Document $doc): bool
+    {
+        $snap = $this->store->redo();
+        if (!$snap) return false;
+        $doc->restore($snap);
+        return true;
+    }
+
+    public function stats(): array
+    {
+        return $this->store->size();
+    }
+}
