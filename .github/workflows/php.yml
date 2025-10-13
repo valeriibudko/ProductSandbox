@@ -17,11 +17,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
+    - name: Validate composer.json and composer.lock. Case 1
       working-directory: DesignPatterns/Structural/Facade
       run: composer validate --strict
 
-    - name: Cache Composer packages
+    - name: Validate composer.json and composer.lock. Case 2
+      working-directory: DesignPatterns/Creational/Builder
+      run: composer validate --strict
+
+    - name: Cache Composer packages. Case 1
       id: composer-cache
       uses: actions/cache@v3
       with:
@@ -30,10 +34,27 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Install dependencies
+    - name: Cache Composer packages. Case 2
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: DesignPatterns/Creational/Builder
+        key: ${{ runner.os }}-php-${{ hashFiles('DesignPatterns/Creational/Builder/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies. Case 1
       working-directory: DesignPatterns/Structural/Facade
       run: composer install --prefer-dist --no-progress
 
-    - name: Run test suite
+    - name: Install dependencies. Case 2
+      working-directory: DesignPatterns/Creational/Builder
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run test suite. Case 1
       working-directory: DesignPatterns/Structural/Facade
+      run:  composer run-script test
+
+    - name: Run test suite. Case 2
+      working-directory: DesignPatterns/Creational/Builder
       run:  composer run-script test
