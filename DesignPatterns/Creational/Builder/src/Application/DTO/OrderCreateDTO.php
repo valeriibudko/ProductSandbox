@@ -12,7 +12,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 final class OrderCreateDTO
 {
-    /** @var list<OrderItemDto> */
+    /** @var list<OrderItemDTO> */
     #[Assert\Count(min: 1)]
     #[Assert\Valid]
     public readonly array $items;
@@ -22,8 +22,8 @@ final class OrderCreateDTO
         #[Assert\NotBlank] public readonly string $id,
         #[Assert\NotBlank] #[Assert\Currency] public readonly string $currency,
         array $items,
-        #[Assert\Valid] public readonly AddressDto $shipping,
-        #[Assert\Valid] public readonly AddressDto $billing,
+        #[Assert\Valid] public readonly AddressDTO $shipping,
+        #[Assert\Valid] public readonly AddressDTO $billing,
         #[Assert\PositiveOrZero] public readonly ?int $shippingCost = null,
         public readonly ?string $coupon = null,
         /** @var array<string,mixed> */
@@ -46,7 +46,7 @@ final class OrderCreateDTO
     public static function fromArray(array $payload): self
     {
         $items = array_map(
-            fn(array $it) => OrderItemDto::fromArray($it),
+            fn(array $it) => OrderItemDTO::fromArray($it),
             (array)($payload['items'] ?? [])
         );
 
@@ -55,8 +55,8 @@ final class OrderCreateDTO
             id: (string)($payload['id'] ?? ''),
             currency: strtoupper((string)($payload['currency'] ?? '')),
             items: $items,
-            shipping: AddressDto::fromArray((array)($payload['shipping'] ?? [])),
-            billing: AddressDto::fromArray((array)($payload['billing'] ?? [])),
+            shipping: AddressDTO::fromArray((array)($payload['shipping'] ?? [])),
+            billing: AddressDTO::fromArray((array)($payload['billing'] ?? [])),
             shippingCost: array_key_exists('shipping_cost', $payload) ? (int)$payload['shipping_cost'] : null,
             coupon: isset($payload['coupon']) && $payload['coupon'] !== '' ? (string)$payload['coupon'] : null,
             meta: (array)($payload['meta'] ?? [])
