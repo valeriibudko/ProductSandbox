@@ -67,15 +67,19 @@ jobs:
     - name: Install dependencies. Case 3
       working-directory: DesignPatterns/Creational/FactoryMethod
       run: composer install --prefer-dist --no-progress
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-    - name: Run test suite. Case 1
-      working-directory: DesignPatterns/Structural/Facade
-      run:  composer run-script test
+      - name: Run test suite. Case 1
+        working-directory: DesignPatterns/Structural/Facade
+        run: composer run-script test
 
-    - name: Run test suite. Case 2
-      working-directory: DesignPatterns/Creational/Builder
-      run:  composer run-script test
+      - name: Run test suite. Case 2
+        working-directory: DesignPatterns/Creational/Builder
+        run: composer run-script test
 
-    - name: Run test suite. Case 3
-      working-directory: DesignPatterns/Creational/FactoryMethod
-      run:  composer run-script test
+      - name: Run test suite. Case 3
+        working-directory: DesignPatterns/Creational/FactoryMethod
+        run: composer run-script test
