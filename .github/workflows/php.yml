@@ -26,7 +26,7 @@ jobs:
       run: composer validate --strict
 
     - name: Cache Composer packages. Case 1
-      id: composer-cache
+      id: composer-cache-1
       uses: actions/cache@v3
       with:
         path: DesignPatterns/Structural/Facade/vendor
@@ -35,10 +35,10 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Cache Composer packages. Case 2
-      id: composer-cache
+      id: composer-cache-2
       uses: actions/cache@v3
       with:
-        path: DesignPatterns/Creational/Builder
+        path: DesignPatterns/Creational/Builder/vendor
         key: ${{ runner.os }}-php-${{ hashFiles('DesignPatterns/Creational/Builder/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
