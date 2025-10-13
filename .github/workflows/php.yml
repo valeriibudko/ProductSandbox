@@ -68,6 +68,7 @@ jobs:
       working-directory: DesignPatterns/Creational/FactoryMethod
       run: composer install --prefer-dist --no-progress
   tests:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
