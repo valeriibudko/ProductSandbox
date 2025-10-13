@@ -48,7 +48,7 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Cache Composer packages. Case 3
-      id: composer-cache-2
+      id: composer-cache-3
       uses: actions/cache@v3
       with:
         path: DesignPatterns/Creational/FactoryMethod/vendor
