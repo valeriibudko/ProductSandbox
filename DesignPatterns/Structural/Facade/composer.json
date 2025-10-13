@@ -1,5 +1,6 @@
 {
   "name": "vbudko/facade-demo",
+  "description": "Production-ready example of the Facade design pattern in PHP with tests.",
   "type": "library",
   "license": "proprietary",
   "require": {
