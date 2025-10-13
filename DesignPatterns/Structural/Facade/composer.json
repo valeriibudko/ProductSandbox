@@ -1,5 +1,7 @@
 {
   "name": "vbudko/facade-demo",
+  "type": "library",
+  "license": "proprietary",
   "require": {
     "php": "^8.2"
   },
