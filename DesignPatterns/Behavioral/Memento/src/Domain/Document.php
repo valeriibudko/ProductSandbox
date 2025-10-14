@@ -5,6 +5,9 @@ namespace App\Domain;
 
 final class Document
 {
+    private ?string $id;
+    private ?string $reason;
+    private ?\DateTimeImmutable $createdAt;
     private string $title;
     private string $body;
     private array $metadata; // ['author' => '…', 'tags' => ['…']]
@@ -16,13 +19,35 @@ final class Document
         $this->metadata = $metadata;
     }
 
-    public function title(): string { return $this->title; }
-    public function body(): string  { return $this->body; }
-    public function metadata(): array { return $this->metadata; }
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
 
-    public function rename(string $title): void { $this->title = $title; }
-    public function write(string $body): void   { $this->body = $body; }
-    public function setMetadata(array $metadata): void { $this->metadata = $metadata; }
+    public function getBody(): string
+    {
+        return $this->body;
+    }
+
+    public function getMetadata(): array
+    {
+        return $this->metadata;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function setBody(string $body): void
+    {
+        $this->body = $body;
+    }
+
+    public function setMetadata(array $metadata): void
+    {
+        $this->metadata = $metadata;
+    }
 
     /**
      * Create a snapshot of the current state
@@ -44,8 +69,23 @@ final class Document
      */
     public function restore(DocumentSnapshot $snapshot): void
     {
-        $this->title    = $snapshot->title();
-        $this->body     = $snapshot->body();
-        $this->metadata = $snapshot->metadata();
+        $this->id = $snapshot->getId();
+        $this->title = $snapshot->getTitle();
+        $this->body = $snapshot->getBody();
+        $this->metadata = $snapshot->getMetadata();
+        $this->createdAt = $snapshot->getCreatedAt();
+        $this->reason = $snapshot->getReason();
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id'        => $this->id,
+            'title'     => $this->title,
+            'body'      => $this->body,
+            'metadata'  => $this->metadata,
+            'createdAt' => $this->createdAt->format(\DateTimeInterface::ATOM),
+            'reason'    => $this->reason,
+        ];
     }
 }

@@ -18,12 +18,12 @@ final class DocumentSnapshot
         private readonly string $reason
     ) {}
 
-    public function id(): string { return $this->id; }
-    public function title(): string { return $this->title; }
-    public function body(): string  { return $this->body; }
-    public function metadata(): array { return $this->metadata; }
-    public function createdAt(): \DateTimeImmutable { return $this->createdAt; }
-    public function reason(): string { return $this->reason; }
+    public function getId(): string { return $this->id; }
+    public function getTitle(): string { return $this->title; }
+    public function getBody(): string  { return $this->body; }
+    public function getMetadata(): array { return $this->metadata; }
+    public function getCreatedAt(): \DateTimeImmutable { return $this->createdAt; }
+    public function getReason(): string { return $this->reason; }
 
     /**
      * For serialization to file storage

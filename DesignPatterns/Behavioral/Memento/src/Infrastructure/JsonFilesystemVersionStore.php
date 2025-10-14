@@ -100,6 +100,9 @@ final class JsonFilesystemVersionStore implements VersionStore
 
     public function size(): array
     {
-        return ['undo' => count($this->readStack($this->undoFile)), 'redo' => count($this->readStack($this->redoFile))];
+        return [
+            'undo' => count($this->readStack($this->undoFile)),
+            'redo' => count($this->readStack($this->redoFile))
+        ];
     }
 }

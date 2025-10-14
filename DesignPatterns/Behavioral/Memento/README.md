@@ -11,7 +11,8 @@ cp phpunit.xml.dist phpunit.xml
 
 ### Run build
 ```
-php bin/demo.php
+php bin/demo.php memory
+php bin/demo.php file
 ```
 
 ### Autotest

@@ -2,3 +2,4 @@
 /var/versions/*
 !/var/versions/.gitkeep
 phpunit.xml
+.phpunit.result.cache

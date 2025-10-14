@@ -12,9 +12,9 @@ final class VersioningService
     ) {}
 
     /**
-     * Need calle on every user change
+     * Need call on every user change
      */
-    public function checkpoint(Document $doc, string $reason = 'edit'): void
+    public function setCheckpoint(Document $doc, string $reason = 'edit'): void
     {
         $this->store->push($doc->createSnapshot($reason));
         // Any new action "breaks" the redo branch
@@ -41,4 +41,11 @@ final class VersioningService
     {
         return $this->store->size();
     }
+
+    public function isUndo(): bool
+    {
+       $countUndo = $this->store->size()['undo'] ?? 0;
+       return $countUndo !== 0;
+    }
+
 }
