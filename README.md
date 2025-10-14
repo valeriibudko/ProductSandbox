@@ -1,7 +1,7 @@
 
 ## Description
 
-Implementation Design Patterns, algorithms for production cases.
+Implementation Design Patterns, algorithms for production cases with automated tests.
 
 | Folder                                               | Description                                             | Lang    |
 |------------------------------------------------------|:--------------------------------------------------------|:--------|
