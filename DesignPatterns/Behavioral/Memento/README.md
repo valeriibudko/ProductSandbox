@@ -17,5 +17,5 @@ php bin/demo.php file
 
 ### Autotest
 ```
-vendor/bin/phpunit tests
+composer tests
 ```
