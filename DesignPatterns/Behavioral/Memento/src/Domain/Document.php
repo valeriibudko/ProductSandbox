@@ -5,9 +5,6 @@ namespace App\Domain;
 
 final class Document
 {
-    private ?string $id;
-    private ?string $reason;
-    private ?\DateTimeImmutable $createdAt;
     private string $title;
     private string $body;
     private array $metadata; // ['author' => '…', 'tags' => ['…']]
@@ -69,23 +66,17 @@ final class Document
      */
     public function restore(DocumentSnapshot $snapshot): void
     {
-        $this->id = $snapshot->getId();
         $this->title = $snapshot->getTitle();
         $this->body = $snapshot->getBody();
         $this->metadata = $snapshot->getMetadata();
-        $this->createdAt = $snapshot->getCreatedAt();
-        $this->reason = $snapshot->getReason();
     }
 
     public function toArray(): array
     {
         return [
-            'id'        => $this->id,
             'title'     => $this->title,
             'body'      => $this->body,
             'metadata'  => $this->metadata,
-            'createdAt' => $this->createdAt->format(\DateTimeInterface::ATOM),
-            'reason'    => $this->reason,
         ];
     }
 }
