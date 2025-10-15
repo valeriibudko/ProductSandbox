@@ -1,5 +1,8 @@
 {
   "name": "vbudko/mediator-demo",
+  "description": "Production-ready example of the Mediator design pattern in PHP with tests.",
+  "type": "library",
+  "license": "MIT",
   "require": {
     "php": "^8.2",
     "psr/log": "^3.0"
@@ -14,6 +17,9 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^10.5"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit tests --colors=always --testdox"
   },
   "authors": [
     {
