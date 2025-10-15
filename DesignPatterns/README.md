@@ -5,13 +5,13 @@ Practice of common software design patterns.
 
 ## Creational Patterns
 
- Status | Pattern                                    | Description                                                |
-|--------|:-------------------------------------------|:-----------------------------------------------------------|
-| Done   | [FactoryMethod](Creational/FactoryMethod)  | Sending notifications via different channels: Email or SMS |
-| -      | Abstract Factory                           | -                                                          |
-| Done   | [Builder](Creational/Builder)              | Orders for e-commerce                                      |
-| Done   | [Prototype](Creational/Prototype)          | Generating Invoice                                         |
-| -      | Singleton                                  | -                                                          |
+ Status | Pattern                                   | Description                                                |
+|--------|:------------------------------------------|:-----------------------------------------------------------|
+| Done   | [FactoryMethod](Creational/FactoryMethod) | Sending notifications via different channels: Email or SMS |
+| -      | Abstract Factory                          | -                                                          |
+| Done   | [Builder](Creational/Builder)             | Orders for e-commerce                                      |
+| Done   | [Prototype](Creational/Prototype)         | Generating Invoice                                         |
+| Done   | [Singleton](Creational/Singleton)         | Logging events: errors, user actions, system events        |
 
 ## Structural Patterns
 

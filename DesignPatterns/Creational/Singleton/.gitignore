@@ -1,0 +1,5 @@
+/vendor
+phpunit.xml
+.phpunit.result.cache
+!/var/logs/.gitkeep
+/var/logs/*
