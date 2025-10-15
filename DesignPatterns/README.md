@@ -28,15 +28,15 @@ Practice of common software design patterns.
 
 ## Behavioral Patterns
 
- Status      | Pattern                                         | Description                                                   |
-|-------------|:------------------------------------------------|:--------------------------------------------------------------|
-| -           | Chain of Responsibility                         | -                                                             |
-| -           | Command                                         | -                                                             |
-| -           | Iterator                                        | -                                                             |
-| In process  | [Mediator](Behavioral/Mediator)                 | -                                                             |
-| In process  | [Memento](Behavioral/Memento)                   | Document editor with versioning, undo/redo and storage limits |
-| -           | Observer                                        | -                                                             |
-| -           | State                                           | -                                                             |
-| -           | Strategy                                        | -                                                             |
-| -           | Template Method                                 | -                                                             |
-| -           | Visitor                                         | -                                                             |
+ Status     | Pattern                                         | Description                                                   |
+|------------|:------------------------------------------------|:--------------------------------------------------------------|
+| -          | Chain of Responsibility                         | -                                                             |
+| -          | Command                                         | -                                                             |
+| -          | Iterator                                        | -                                                             |
+| In process | [Mediator](Behavioral/Mediator)                 | -                                                             |
+| Done       | [Memento](Behavioral/Memento)                   | Document editor with versioning, undo/redo and storage limits |
+| -          | Observer                                        | -                                                             |
+| -          | State                                           | -                                                             |
+| -          | Strategy                                        | -                                                             |
+| -          | Template Method                                 | -                                                             |
+| -          | Visitor                                         | -                                                             |

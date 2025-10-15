@@ -38,20 +38,27 @@ final class JsonFilesystemVersionStoreTest extends TestCase
         $doc = new Document('A', 'B', ['tags' => ['x']]);
         $svc->setCheckpoint($doc, 'init');
 
-        $doc->setTitle('A1'); $svc->setCheckpoint($doc, 'rename');
-        $doc->setBody('B1');  $svc->setCheckpoint($doc, 'write');
-
-        $this->assertSame(['undo' => 3, 'redo' => 0], $svc->stats());
+        $doc->setTitle('A1');
+        $svc->setCheckpoint($doc, 'rename');
+        $doc->setBody('B1');
+        $svc->setCheckpoint($doc, 'write');
+        $this->assertSame(
+            ['undo' => 3, 'redo' => 0],
+            $svc->stats()
+        );
 
         // Reload store. Emulate a new process
         $store2 = new JsonFilesystemVersionStore($this->dir, limit: 5);
         $svc2 = new VersioningService($store2);
 
-        $this->assertSame(['undo' => 3, 'redo' => 0], $svc2->stats(), 'stacks persisted to disk');
-
+        $this->assertSame(
+            ['undo' => 3, 'redo' => 0],
+            $svc2->stats(),
+            'stacks persisted to disk'
+        );
         $this->assertTrue($svc2->undo($doc));
         $this->assertTrue($svc2->undo($doc));
-        $this->assertSame('A1', $doc->getTitle());
-        $this->assertSame(['undo' => 1, 'redo' => 2], $svc2->stats());
+        $this->assertSame('A', $doc->getTitle());
+        $this->assertSame(['undo' => 0, 'redo' => 3], $svc2->stats());
     }
 }

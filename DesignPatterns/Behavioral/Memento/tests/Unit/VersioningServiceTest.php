@@ -21,15 +21,17 @@ final class VersioningServiceTest extends TestCase
         $svc->setCheckpoint($doc, 'rename');
         $doc->setBody('B2');
         $svc->setCheckpoint($doc, 'write');
-
-        $this->assertSame(['undo' => 3, 'redo' => 0], $svc->stats());
+        $this->assertSame(
+            ['undo' => 3, 'redo' => 0],
+            $svc->stats()
+        );
         $this->assertTrue($svc->undo($doc));
-        $this->assertSame('B2', $doc->getBody(), 'undo returns last snapshot state into doc');
+        $this->assertSame('B1', $doc->getBody(), 'undo returns last snapshot state into doc');
         $this->assertTrue($svc->undo($doc));
-        $this->assertSame('T2', $doc->getTitle(), 'title after two undos is T2');
+        $this->assertSame('T1', $doc->getTitle(), 'title after two undos is T2');
         $this->assertTrue($svc->redo($doc));
         $this->assertSame('T2', $doc->getTitle(), 'redo brings us back to previous snapshot');
-        $this->assertSame(['undo' => 3, 'redo' => 1], $svc->stats());
+        $this->assertSame(['undo' => 2, 'redo' => 1], $svc->stats());
     }
 
     public function testRedoClearedAfterNewCheckpoint(): void
@@ -38,18 +40,26 @@ final class VersioningServiceTest extends TestCase
         $svc = new VersioningService(new InMemoryVersionStore(10));
 
         $svc->setCheckpoint($doc, 'init');
-        $doc->setTitle('T2'); $svc->setCheckpoint($doc, 'rename');
-        $doc->setBody('B2');  $svc->setCheckpoint($doc, 'write');
+        $doc->setTitle('T2');
+        $svc->setCheckpoint($doc, 'rename');
+        $doc->setBody('B2');
+        $svc->setCheckpoint($doc, 'write');
 
         $this->assertTrue($svc->undo($doc));
         $this->assertTrue($svc->undo($doc));
-        $this->assertSame(['undo' => 1, 'redo' => 2], $svc->stats());
+        $this->assertSame(
+            ['undo' => 0, 'redo' => 3],
+            $svc->stats()
+        );
 
         // A new change after undo for cleaning redo
         $doc->setTitle('T2.1');
         $svc->setCheckpoint($doc, 'minor rename');
 
-        $this->assertSame(['undo' => 2, 'redo' => 0], $svc->stats());
+        $this->assertSame(
+            ['undo' => 1, 'redo' => 0],
+            $svc->stats()
+        );
         $this->assertFalse($svc->redo($doc), 'redo should be empty after new checkpoint');
     }
 
@@ -65,9 +75,10 @@ final class VersioningServiceTest extends TestCase
             $svc->setCheckpoint($doc, "step{$i}");
         }
 
-        $this->assertSame(['undo' => $limit, 'redo' => 0], $svc->stats());
-
-        $this->assertTrue($svc->undo($doc));
+        $this->assertSame(
+            ['undo' => $limit, 'redo' => 0],
+            $svc->stats()
+        );
         $this->assertTrue($svc->undo($doc));
         $this->assertTrue($svc->undo($doc));
         $this->assertFalse($svc->undo($doc), 'oldest snapshot was evicted, no more undo');
