@@ -1,5 +1,8 @@
 {
   "name": "vbudko/memento-demo",
+  "description": "Production-ready example of the Memento design pattern in PHP with tests.",
+  "type": "library",
+  "license": "MIT",
   "require": {
     "php": "^8.2"
   },
