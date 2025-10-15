@@ -1,2 +1,4 @@
 /vendor
 /var/app.db
+phpunit.xml
+.phpunit.result.cache
