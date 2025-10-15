@@ -24,25 +24,28 @@ if ($typeInfrastructure === 'file') {
     $store = new InMemoryVersionStore(limit: $limitUndo);
 }
 
-$doc = new Document('It is a title', 'Hello world', ['author' => 'Alice', 'tags' => ['demo']]);
+$doc = new Document('It is a title. Deep 0', 'Hello world', ['author' => 'Alice', 'tags' => ['demo']]);
 $versioning = new VersioningService($store);
 
 // First checkpoint. Initial state
 $versioning->setCheckpoint($doc, 'Init document');
 
-$doc->setTitle('Edit title v2');
+$doc->setTitle('Deep 1');
 $versioning->setCheckpoint($doc, 'Rename title');
 
+$doc->setTitle('Deep 2');
 $doc->setBody("Edit body v2");
 $versioning->setCheckpoint($doc, 'Write body');
 
-$doc->setMetadata(['author' => 'Alice', 'tags' => ['demo', 'test', 'v2']]);
+$doc->setTitle('Deep 3');
+$doc->setMetadata(['author' => 'Alice', 'tags' => ['demo', 'test']]);
 $versioning->setCheckpoint($doc, 'Update metadata');
 
 
 echo "================================\n";
 echo "Current state\n";
 echo "================================\n";
+echo "ID: {$doc->getId()}\n";
 echo "Title: {$doc->getTitle()}\n";
 echo "Body: {$doc->getBody()}\n";
 echo "Tags: " . implode(', ', $doc->getMetadata()['tags']) . "\n";
@@ -53,14 +56,17 @@ while ($versioning->isUndo() && $index < $limitUndo) {
     echo "================================\n";
     echo "Undo #$index\n";
     $versioning->undo($doc);
-    print_r($doc->toArray());
-
+    echo "----------------------\n";
+    echo "ID: {$doc->getId()}\n";
+    echo "Title: {$doc->getTitle()}\n";
+    echo "Body: {$doc->getBody()}\n";
+    echo "Tags: " . implode(', ', $doc->getMetadata()['tags']) . "\n";
+    echo "----------------------\n";
     echo "Stats of versioning:\n";
     print_r($versioning->stats());
     $index++;
 }
 
-echo "================================\n";
 echo "================================\n";
 echo "Redo...\n";
 echo "================================\n";

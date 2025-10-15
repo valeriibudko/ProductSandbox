@@ -5,15 +5,27 @@ namespace App\Domain;
 
 final class Document
 {
+    private string $id;
     private string $title;
     private string $body;
     private array $metadata; // ['author' => '…', 'tags' => ['…']]
 
     public function __construct(string $title = '', string $body = '', array $metadata = [])
     {
+
         $this->title = $title;
         $this->body = $body;
         $this->metadata = $metadata;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
     }
 
     public function getTitle(): string
@@ -51,8 +63,10 @@ final class Document
      */
     public function createSnapshot(string $reason = 'manual'): DocumentSnapshot
     {
+        $this->id = bin2hex(random_bytes(8));
         return new DocumentSnapshot(
-            id: bin2hex(random_bytes(8)),
+//            id: bin2hex(random_bytes(8)),
+            id: $this->id,
             title: $this->title,
             body: $this->body,
             metadata: $this->metadata,
@@ -66,6 +80,7 @@ final class Document
      */
     public function restore(DocumentSnapshot $snapshot): void
     {
+        $this->id = $snapshot->getId();
         $this->title = $snapshot->getTitle();
         $this->body = $snapshot->getBody();
         $this->metadata = $snapshot->getMetadata();
@@ -74,6 +89,7 @@ final class Document
     public function toArray(): array
     {
         return [
+            'id'     => $this->id,
             'title'     => $this->title,
             'body'      => $this->body,
             'metadata'  => $this->metadata,

@@ -25,6 +25,11 @@ final class VersioningService
     {
         $snap = $this->store->undo();
         if (!$snap) return false;
+
+        if($doc->getId() == $snap->getId()) {
+            $snap = $this->store->undo();
+        }
+
         $doc->restore($snap);
         return true;
     }
@@ -33,6 +38,9 @@ final class VersioningService
     {
         $snap = $this->store->redo();
         if (!$snap) return false;
+        if($doc->getId() == $snap->getId()) {
+            $snap = $this->store->redo();
+        }
         $doc->restore($snap);
         return true;
     }
