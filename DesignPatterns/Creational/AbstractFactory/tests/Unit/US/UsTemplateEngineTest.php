@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\US;
+namespace Tests\Unit\US;
 
 use App\Notification\US\UsTemplateEngine;
 use PHPUnit\Framework\TestCase;

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Notification;
+namespace Tests\Integration\Notification;
 
 use App\Notification\WelcomeNotifier;
 use App\Notification\EU\EuNotificationFactory;
