@@ -1,9 +1,9 @@
 ## Description
 
-Practice of common software design patterns.
+Product examples with implementation Design Patterns. Automation tests is included.
 
 
-## Creational Patterns
+### Creational Patterns
 
  Status | Pattern                                   | Description                                                |
 |--------|:------------------------------------------|:-----------------------------------------------------------|
@@ -13,7 +13,7 @@ Practice of common software design patterns.
 | Done   | [Prototype](Creational/Prototype)         | Generating Invoice                                         |
 | Done   | [Singleton](Creational/Singleton)         | Logging events: errors, user actions, system events        |
 
-## Structural Patterns
+### Structural Patterns
 
  Status     | Pattern                           | Description                                                                                                                     |
 |------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|
@@ -26,7 +26,7 @@ Practice of common software design patterns.
 | -          | Proxy                             | -                                                                                                                               |
 
 
-## Behavioral Patterns
+### Behavioral Patterns
 
  Status     | Pattern                                         | Description                                                   |
 |------------|:------------------------------------------------|:--------------------------------------------------------------|
