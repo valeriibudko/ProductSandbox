@@ -5,13 +5,13 @@ Product examples with implementation Design Patterns. Automation tests is includ
 
 ### Creational Patterns
 
- Status | Pattern                                   | Description                                                |
-|--------|:------------------------------------------|:-----------------------------------------------------------|
-| Done   | [FactoryMethod](Creational/FactoryMethod) | Sending notifications via different channels: Email or SMS |
-| -      | Abstract Factory                          | -                                                          |
-| Done   | [Builder](Creational/Builder)             | Orders for e-commerce                                      |
-| Done   | [Prototype](Creational/Prototype)         | Generating Invoice                                         |
-| Done   | [Singleton](Creational/Singleton)         | Logging events: errors, user actions, system events        |
+ Status | Pattern                                        | Description                                                                                                 |
+|--------|:-----------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+| Done   | [FactoryMethod](Creational/FactoryMethod)      | Sending notifications via different channels: Email or SMS                                                  |
+| Done   | [AbstractFactory](Creational/AbstractFactory)  | Implementation of notification components: email, SMS, templates. For different regulatory zones: EU, US... |
+| Done   | [Builder](Creational/Builder)                  | Orders for e-commerce                                                                                       |
+| Done   | [Prototype](Creational/Prototype)              | Generating Invoice                                                                                          |
+| Done   | [Singleton](Creational/Singleton)              | Logging events: errors, user actions, system events                                                         |
 
 ### Structural Patterns
 
