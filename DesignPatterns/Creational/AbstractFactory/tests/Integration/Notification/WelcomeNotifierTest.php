@@ -39,24 +39,22 @@ final class WelcomeNotifierTest extends TestCase
         $this->assertSame('POST', $emailReq->getMethod());
         $this->assertSame('/mail/send', $emailReq->getUri()->getPath());
         $this->assertSame('application/json', $emailReq->getHeaderLine('Content-Type'));
-//
-//        $this->assertSame('POST', $smsReq->getMethod());
-//        $this->assertSame('/sms/send', $smsReq->getUri()->getPath());
-//        $this->assertSame('application/json', $smsReq->getHeaderLine('Content-Type'));
-//
-//        // Check the payload
-//        $emailPayload = json_decode((string)$emailReq->getBody(), true, 512, JSON_THROW_ON_ERROR);
-//        $smsPayload   = json_decode((string)$smsReq->getBody(), true, 512, JSON_THROW_ON_ERROR);
-//
-//        $this->assertSame('user@acme.test', $emailPayload['to'] ?? null);
-//        $this->assertStringContainsString('Welcome, Viktoria!', $emailPayload['subject'] ?? '');
-//        $this->assertStringContainsString('Hello, Viktoria!', $emailPayload['html'] ?? '');
-//        $this->assertStringContainsString('GDPR', $emailPayload['html'] ?? '');                      // GDPR footer
-//        $this->assertSame('true', $emailPayload['headers']['X-GDPR-Consent'] ?? null);
-//
-//        $this->assertSame('+4912345678', $smsPayload['to'] ?? null);
-//        $this->assertStringContainsString('Hi Viktoria, your account is ready.', $smsPayload['text'] ?? '');
-//        $this->assertStringContainsString('Reply STOP to opt-out EU', $smsPayload['text'] ?? '');
-//
+
+        $this->assertSame('POST', $smsReq->getMethod());
+        $this->assertSame('/sms/send', $smsReq->getUri()->getPath());
+        $this->assertSame('application/json', $smsReq->getHeaderLine('Content-Type'));
+
+        // Check the payload
+        $emailPayload = json_decode((string)$emailReq->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $smsPayload   = json_decode((string)$smsReq->getBody(), true, 512, JSON_THROW_ON_ERROR);
+
+        $this->assertSame('user@acme.test', $emailPayload['to'] ?? null);
+        $this->assertStringContainsString('Welcome, Viktoria!', $emailPayload['subject'] ?? '');
+        $this->assertStringContainsString('Hello, Viktoria!', $emailPayload['html'] ?? '');
+        $this->assertStringContainsString('GDPR', $emailPayload['html'] ?? '');                      // GDPR footer
+        $this->assertSame('true', $emailPayload['headers']['X-GDPR-Consent'] ?? null);
+
+        $this->assertSame('+4912345678', $smsPayload['to'] ?? null);
+        $this->assertStringContainsString('Hi Viktoria, your account is ready.', $smsPayload['text'] ?? '');
     }
 }
