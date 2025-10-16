@@ -32,6 +32,10 @@ jobs:
       run: composer validate --strict
 
     - name: Validate composer.json and composer.lock. Case 5
+      working-directory: DesignPatterns/Creational/AbstractFactory
+      run: composer validate --strict
+
+    - name: Validate composer.json and composer.lock. Case 6
       working-directory: DesignPatterns/Behavioral/Memento
       run: composer validate --strict
 
@@ -75,6 +79,15 @@ jobs:
       id: composer-cache-5
       uses: actions/cache@v3
       with:
+        path: DesignPatterns/Creational/AbstractFactory/vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('DesignPatterns/Creational/AbstractFactory/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Cache Composer packages. Case 6
+      id: composer-cache-6
+      uses: actions/cache@v3
+      with:
         path: DesignPatterns/Behavioral/Memento/vendor
         key: ${{ runner.os }}-php-${{ hashFiles('DesignPatterns/Behavioral/Memento/composer.lock') }}
         restore-keys: |
@@ -97,6 +110,10 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Install dependencies. Case 5
+      working-directory: DesignPatterns/Creational/AbstractFactory
+      run: composer install --prefer-dist --no-progress
+
+    - name: Install dependencies. Case 6
       working-directory: DesignPatterns/Behavioral/Memento
       run: composer install --prefer-dist --no-progress
 
@@ -117,5 +134,9 @@ jobs:
       run:  composer run-script test
 
     - name: Run test suite. Case 5
+      working-directory: DesignPatterns/Creational/AbstractFactory
+      run:  composer run-script test
+
+    - name: Run test suite. Case 6
       working-directory: DesignPatterns/Behavioral/Memento
       run:  composer run-script test
